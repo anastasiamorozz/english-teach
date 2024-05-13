@@ -1,0 +1,72 @@
+.loginForm{
+    width: 305px;
+    height: 551px;
+    padding: 70px;
+    margin: auto;
+
+    border: solid 1px;
+    border-radius: 10px;
+    border-color: #23856D;
+    background-color: #0F1621;
+}
+
+h1{
+    margin-bottom: 60px;
+}
+
+h3{
+    font-weight: lighter;
+}
+
+.textInput{
+    width: 305px;
+    /* height: 50px; */
+    margin: 5px 10px 10px 0px;
+    padding: 20px 0px 20px 20px;
+
+    background-color: transparent;
+    color: white;
+
+    border: solid 1px;
+    border-radius: 10px;
+    border-color: #23856D;
+}
+
+.line{
+    width: 326px;
+    display: flex;
+    justify-content: space-between;
+
+    margin: 30px 0px 30px 0px;
+    font-weight: lighter;
+    font-size: 18;
+    align-items: center;
+}
+
+.checkInput{
+    margin-right: 10px;
+}
+
+.line a{
+    color: #23856D;
+    text-decoration: none;
+}
+
+.regLink{
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.regLink a{
+    text-decoration: none;
+    color: white;
+}
+
+button{
+    width: 326px;
+    /* height: 57px; */
+    font-weight: bold;
+    padding: 15px 0px 15px 0px;
+    border-radius: 5px;
+}
