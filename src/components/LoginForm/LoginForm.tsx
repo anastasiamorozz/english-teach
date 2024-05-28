@@ -2,20 +2,28 @@ import React, { FC, useContext, useState } from 'react';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import './LoginForm.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm: FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const {store} = useContext(Context);
+    const navigate = useNavigate();
 
-    // const navigate = useNavigate();
+    const handleLogin = async () => {
+        await store.login(email, password);
+        if (store.isAuth) {
+            navigate('/'); 
+        }
+    };
 
     return (
         <div className='loginForm'>
             <h3>Welcome !</h3>
             <p></p>
             <h1>Sign in</h1>
+
+            {store.errorMessage && <div className='error'>Authorization error: {store.errorMessage}</div>}
 
             <span>Email</span><br></br>
             <input 
@@ -44,11 +52,11 @@ const LoginForm: FC = () => {
                 <a>Forgot password?</a>
             </div>
 
-            <button onClick={()=>store.login(email,password)}>Login</button>
+            <button onClick={handleLogin}>Login</button>
 
-            <p className='regLink'>Don’y have an Account ?  <a href='/reg'><b>Register</b></a></p>
+            <p className='regLink'>Don’t have an Account? <Link to={'/reg'}><b>Register</b></Link></p>
         </div>
     );
 }
 
-export default observer(LoginForm);   
+export default observer(LoginForm);

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
 .loginForm{
     width: 305px;
     height: 551px;
@@ -6,12 +8,12 @@
 
     border: solid 1px;
     border-radius: 10px;
-    border-color: #23856D;
-    background-color: #0F1621;
+    border-color: var(--secondary-color);
+    background-color: var(--bg-color);
 }
 
 h1{
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 h3{
@@ -69,4 +71,16 @@ button{
     font-weight: bold;
     padding: 15px 0px 15px 0px;
     border-radius: 5px;
+}
+
+.error{
+    color: red;
+    border: solid 0.5px red;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 10px;
+    font-family: "Source Code Pro", monospace;
+    padding: 10px;
+    margin-bottom:15px;
+    width: 305px;
 }

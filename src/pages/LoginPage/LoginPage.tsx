@@ -15,6 +15,14 @@ const LoginPage: FC = () => {
                     <img src='/login-picture.png'></img>
                 </div>
             </div>
+{/* 
+            <button onClick={()=>
+                document.body.setAttribute("data-theme", "light")
+            }>Light Theme</button>
+
+            <button onClick={()=>
+                document.body.setAttribute("data-theme", "dark")
+            }>Dark Theme</button> */}
         </div>
     );
 }

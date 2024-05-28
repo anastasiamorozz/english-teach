@@ -6,6 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { router } from './routes/routes';
 
 interface State {
   store: Store,
@@ -27,7 +28,7 @@ root.render(
     store
   }}>
         <React.StrictMode>
-        <App />
+        <RouterProvider router={router} />
       </React.StrictMode>
   </Context.Provider>
 );

@@ -1,8 +1,11 @@
-
 .content{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 45px;
+}
+
+.picture{
+    background-image: var(--log-img);
 }
 

@@ -8,6 +8,7 @@ import { API_URL } from "../http";
 export default class Store {
     user = {} as IUser;
     isAuth = false;
+    errorMessage: string | null = null;
 
     constructor(){
         makeAutoObservable(this);
@@ -21,15 +22,31 @@ export default class Store {
         this.user = user;
     }
 
+    setErrorMessage(message: string | null) {
+        this.errorMessage = message;
+    }
+
     async login(email: string, password: string){
         try{
+            console.log("1 is Auth: ", this.isAuth)
             const response = await AuthService.login(email, password);
             console.log(response);
+            if(response.data.message==="User with that email doesn't exists"){
+                this.setErrorMessage(`User with email ${email} doesn't exists`);
+                return;
+            }
+            if(response.data.message==="Wrong password"){
+                this.setErrorMessage(`Wrong password`);
+                return;
+            }
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
+            console.log("2 is Auth: ", this.isAuth)
             this.setUser(response.data.user);
+            this.setErrorMessage(null)
         }catch(e){
-            console.log(e)
+            console.log(e);
+            this.setErrorMessage('An error occurred during login. Please try again.');
         }
     }
 
@@ -60,8 +77,10 @@ export default class Store {
             const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true});
             console.log(response);
             localStorage.setItem('token', response.data.accessToken);
-            this.setAuth(true);
-            this.setUser(response.data.user);
+            // if(response){
+            //     this.setAuth(true);
+            //     this.setUser(response.data.user);
+            // }
         }catch(e){
             console.log(e)
         }
