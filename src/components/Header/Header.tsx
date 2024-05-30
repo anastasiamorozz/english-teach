@@ -1,9 +1,10 @@
 import React from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 function Header() {
     return (
         <div className='header'>
-            <img src="/logo-no-background.png" alt="logo" />
+            <Link to={'/'}><img src="/logo-no-background.png" alt="logo" /></Link>
         </div>
     );
 }

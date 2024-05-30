@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
+import ProfileInfo from '../../components/ProfileInfo/ProfileInfo';
+import Header from '../../components/Header/Header';
+import { observer } from 'mobx-react-lite';
 
-function ProfilePage() {
+const ProfilePage: FC = () => {
     return (
         <div>
-            Profile
+            <Header></Header>
+            <ProfileInfo></ProfileInfo>
         </div>
     );
 }
 
-export default ProfilePage;
+export default observer(ProfilePage);

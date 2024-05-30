@@ -28,7 +28,6 @@ export default class Store {
 
     async login(email: string, password: string){
         try{
-            console.log("1 is Auth: ", this.isAuth)
             const response = await AuthService.login(email, password);
             console.log(response);
             if(response.data.message==="User with that email doesn't exists"){
@@ -41,7 +40,6 @@ export default class Store {
             }
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
-            console.log("2 is Auth: ", this.isAuth)
             this.setUser(response.data.user);
             this.setErrorMessage(null)
         }catch(e){
@@ -50,9 +48,13 @@ export default class Store {
         }
     }
 
-    async registration(email: string, password: string, firstName:string, lastName:string, photo:string){
+    async registration(email: string, password: string, firstName:string, lastName:string){
         try{
-            const response = await AuthService.registration(email, password, firstName, lastName, photo);
+            const response = await AuthService.registration(email, password, firstName, lastName);
+            if(response.data.message==="User already exists"){
+                this.setErrorMessage(`User with email ${email} already exists`);
+                return;
+            }
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);

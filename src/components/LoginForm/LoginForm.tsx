@@ -18,7 +18,7 @@ const LoginForm: FC = () => {
     };
 
     return (
-        <div className='loginForm'>
+        <div className='form'>
             <h3>Welcome !</h3>
             <p></p>
             <h1>Sign in</h1>

@@ -1,0 +1,43 @@
+.main{
+    position: absolute;
+    margin-top: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 10px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
+
+.main .avatar img{
+    width: 200px;
+    height: 200px;
+    border: solid;
+    border-radius: 50%;
+}
+
+.main .info{
+    display: flex;
+    align-items: center; 
+    gap: 50px;
+}
+
+.main .info .details .count{
+    font-size: 34px;
+    margin: 17px;
+}
+
+.main .info .details .description{
+    font-size: 14px;
+    font-weight: bold;
+    color: #6C6C6C;
+}
+
+.logoutButton{
+    border: solid 1px red;
+    height: 50px;
+}

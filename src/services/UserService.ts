@@ -8,4 +8,8 @@ export default class UserService{
         return $api.get<IUser[]>('/auth/users')
     }
 
+    static async getUserInfo(userId: number) {
+        return $api.post<{ user: IUser }>('/user/info', { userId });
+    }
+
 }
