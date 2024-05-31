@@ -54,10 +54,10 @@ const ProfileInfo: FC = () => {
     fetchUserInfo(userId);
 
     return (
-        <div>
+        <div className="profile-container">
             <div className='main'>
                 <div className='avatar'>
-                    <img src='/avatar.jpg'></img>
+                    <img src='/avatar.jpg' alt='User Avatar' />
                 </div>
 
                 <div>
@@ -69,12 +69,12 @@ const ProfileInfo: FC = () => {
                         <p className='count'>12</p>
                         <p className='description'>Words</p>
                     </div>
-                    <img src='/Rectangle.png'></img>
+                    <img src='/Rectangle.png' alt='Separator' />
                     <div className='details'>
                         <p className='count'>234</p>
                         <p className='description'>Followers</p>
                     </div>
-                    <img src='/Rectangle.png'></img>
+                    <img src='/Rectangle.png' alt='Separator' />
                     <div className='details'>
                         <p className='count'>135</p>
                         <p className='description'>Following</p>
@@ -82,11 +82,10 @@ const ProfileInfo: FC = () => {
                 </div>
             </div>
 
-            <div className='logoutButton'>
-                
-            </div>
+
         </div>
     );
+
 }
 
 export default observer(ProfileInfo);

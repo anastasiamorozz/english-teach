@@ -1,0 +1,49 @@
+.progress{
+    width: 500px;
+}
+
+.mainProgress{
+    width: 210px;
+    height: 210px;
+    position:relative;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(/public/progress.png);
+    background-size:cover;
+}
+
+.mainProgress p{
+    font-size: 50px;
+    font-weight: lighter;
+}
+
+.infoProgress p{
+    font-size: 15px;
+    font-weight: lighter;
+    display: flex;
+    align-items: center; 
+    gap:7px;
+    color:#23856D;
+}
+
+.highlight {
+    color: #949494; 
+}
+
+.infoProgress .bottomInfo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoProgress .bottomInfo p{
+    font-size: 19px;
+    color:white;
+}
+.infoProgress .bottomInfo p .count{
+    font-weight: bold;
+    color:#EC5C2E;
+}

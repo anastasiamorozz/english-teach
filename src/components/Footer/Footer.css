@@ -1,37 +1,50 @@
-.footer{
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+.footer {
     display: flex;
     justify-content: space-between;
-    height: 414px;
+    height: 320px;
     background-color: #0F1621;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
 
-.footer .firstColumn{
+.footer .firstColumn {
     margin: auto;
     width: 210px;
 }
 
-.footer .firstColumn p{
+.footer .firstColumn p {
     color: #737373;
 }
 
-.footer .firstColumn .social{
+.footer .firstColumn .social {
     display: flex;
     gap: 15px;
 }
 
-.footer .secondColumn{
-    margin:auto;
+.footer .secondColumn {
+    margin: auto;
     display: flex;
 }
 
-.footer .secondColumn .leftColumn{
+.footer .secondColumn .leftColumn {
     margin-right: 90px;
 }
 
-.footer .secondColumn .leftColumn ul{
+.footer .secondColumn .leftColumn ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -39,11 +52,11 @@
     font-weight: bold;
 }
 
-.footer .secondColumn .leftColumn ul li{
+.footer .secondColumn .leftColumn ul li {
     margin-bottom: 10px;
 }
 
-.footer .secondColumn .rightColumn ul{
+.footer .secondColumn .rightColumn ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -51,14 +64,20 @@
     font-weight: bold;
 }
 
-.footer .secondColumn .rightColumn ul li{
+.footer .secondColumn .rightColumn ul li {
     margin-bottom: 10px;
 }
 
-.secondFooter{
+.secondFooter {
     background-color: #252B42;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     text-align: center;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondFooter h5{
+    margin: 0;
 }
