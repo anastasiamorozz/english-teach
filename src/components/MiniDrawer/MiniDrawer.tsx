@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './MiniDrawer.css';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -17,6 +18,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SchoolIcon from '@mui/icons-material/School';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Typography from '@mui/material/Typography';
+import NightsStayIcon from '@mui/icons-material/NightsStay';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const drawerWidth = 240;
 
@@ -113,12 +123,18 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx={{padding:'0'}}>
         <Toolbar sx={{ justifyContent: 'flex-end' }}> {/* Align toolbar content to the end */}
-          {/* <IconButton
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -126,50 +142,88 @@ export default function MiniDrawer() {
             sx={{
               marginLeft: 5,
               width: '50px',
-              backgroundColor: '#0F1621',
+              height: '50px',
+            //   backgroundColor: '#0F1621',
               border: 'none',
               ...(open && { display: 'none' }),
             }}
           >
-            <MenuIcon />
-          </IconButton> */}
+            {/* <MenuIcon /> */}
+            {/* <img className="miniAvatar" src='/avatar.jpg'></img> */}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" anchor="right" open={open}>
         <DrawerHeader sx={{ backgroundColor: '#0F1621' }}>
-            <p>ddsffsfd</p>
           <IconButton onClick={handleDrawerClose} sx={{ color: 'white' }}>
-            {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            <div className='miniInfo'>
+            <img className="miniAvatar" src='/avatar.jpg'></img>
+            <div>
+                <h6>User Bob</h6>
+                <p>bob@bob.com</p>
+            </div>
+            {/* {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
+            </div>
           </IconButton>
         </DrawerHeader>
         <Divider sx={{ border: 'none' }} />
         <List sx={{ backgroundColor: '#0F1621', flexGrow: 1 }}> {/* Ensure List takes full height */}
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block', border: 'none' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  border: 'none',
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    color: 'white',
-                    justifyContent: 'center',
-                    border: 'none',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, color: 'white', border: 'none' }} /> {/* Set text color to white */}
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {['Topics', 'My profile', 'Settings'].map((text, index) => {
+                    const path = text.toLowerCase().replace(' ', '');
+                    return(
+                      <ListItem key={text} disablePadding sx={{ display: 'block', border: 'none' }}>
+                      <ListItemButton
+                        sx={{
+                          minHeight: 48,
+                          justifyContent: open ? 'initial' : 'center',
+                          px: 2.5,
+                          border: 'none',
+                        }}
+                        onClick={() => handleNavigation(`/${path}`)}
+                      >
+                        <ListItemIcon
+                          sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : 'auto',
+                            color: 'white',
+                            justifyContent: 'center',
+                            border: 'none',
+                          }}
+                        >
+                        {index % 3 === 0 ? <SchoolIcon/> : index % 3 === 1 ? <AccountCircleIcon /> : <SettingsIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, color: 'white', border: 'none' }} /> {/* Set text color to white */}
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                  })}
         </List>
+
+        <Typography sx={{
+          backgroundColor:'#0F1621'
+        }}>
+        {open ? (
+          <div className='colorThemePick'>
+            <hr></hr>
+            <p><HelpOutlineIcon /> Colour Scheme</p>
+            <div className='buttonsGroup'>
+              <button className='lightTheme' onClick={()=>
+                document.body.setAttribute("data-theme", "light")
+            }><LightModeIcon></LightModeIcon>Light</button>
+              <button className='darkTheme' onClick={()=>
+                document.body.setAttribute("data-theme", "dark")
+            }><NightsStayIcon></NightsStayIcon>Dark</button>
+            </div>
+          </div>
+        ) : (
+          <NightsStayIcon sx={{
+            marginBottom:'20px',
+            marginLeft:'25px',
+            // color:'#D1D3D4',
+            backgroundColor:'#0F1621'
+          }}/>
+        )}
+      </Typography>
         <Divider sx={{ border: 'none' }} />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1 }}>

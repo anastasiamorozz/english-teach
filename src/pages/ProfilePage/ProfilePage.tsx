@@ -13,6 +13,7 @@ const ProfilePage: FC = () => {
     return (
         <div>
             <Header></Header>
+            <MiniDrawer></MiniDrawer>
             <ProfileInfo></ProfileInfo>
             <div className='progressInfo'>
                 <ProgressContainer></ProgressContainer>
@@ -20,7 +21,6 @@ const ProfilePage: FC = () => {
             </div>
             <LogoutButton></LogoutButton>
             <Footer></Footer>
-            <MiniDrawer></MiniDrawer>
         </div>
     );
 }

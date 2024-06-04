@@ -69,7 +69,7 @@ const RegistrationForm: FC = () => {
                     <a>Forgot password?</a>
                 </div>
 
-                <button onClick={handleReg}>Registration</button>
+                <button className='button' onClick={handleReg}>Registration</button>
             </div>
         </div>
     );

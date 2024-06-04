@@ -52,7 +52,7 @@ const LoginForm: FC = () => {
                 <a>Forgot password?</a>
             </div>
 
-            <button onClick={handleLogin}>Login</button>
+            <button className='button' onClick={handleLogin}>Login</button>
 
             <p className='regLink'>Don’t have an Account? <Link to={'/reg'}><b>Register</b></Link></p>
         </div>

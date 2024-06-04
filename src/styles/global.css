@@ -2,18 +2,24 @@
   --bg-color:#0F1621;
   --text-color:azure;
   --secondary-color:#23856D;
+  --light-btn:transparent;
+  --dark-btn:#29303C;
 }
 
 body[data-theme="light"]{
   --bg-color:#F5F5F5;
   --text-color:#0F1621;
   --secondary-color:#23856D;
+  --light-btn:#29303C;
+  --dark-btn:transparent;
 }
 
 body[data-theme="dark"]{
   --bg-color:#0F1621;
   --text-color:azure;
   --secondary-color:#23856D;
+  --light-btn:transparent;
+  --dark-btn:#29303C;
 }
 
 body {
