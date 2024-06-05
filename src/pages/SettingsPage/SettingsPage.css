@@ -1,0 +1,12 @@
+.settingsContainer{
+    display: flex;
+    width: 1200px;
+    /* grid-template-columns: 500px 500px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profileInfo{
+    align-items: center;
+    text-align: center;
+}

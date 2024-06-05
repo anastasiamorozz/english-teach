@@ -1,0 +1,17 @@
+.photoButton{
+    background-color: var(--secondary-color);
+    /* height: 40px; */
+    font-size: 17px;
+    padding: 10px;
+    margin: 15px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}

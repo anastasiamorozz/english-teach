@@ -31,7 +31,7 @@ const topics: ITopic[] = [
 
 const TopicsPage: FC = () => {
 
-    const [page, setPage]=useState(2);
+    const [page, setPage]=useState(1);
 
     return (
         <div>

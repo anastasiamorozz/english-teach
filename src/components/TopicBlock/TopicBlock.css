@@ -1,6 +1,6 @@
 .topic{
     margin: 15px;
-    border: solid 1px white;
+    border: solid 1px #29303C;
     border-radius: 10px;
     padding: 12px;
     display: flex;
@@ -23,6 +23,13 @@
 .topic p{
     display: flex;
     align-items: center;
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.icon{
+    font-weight: 12px;
 }
 
 .topicInfo{
@@ -30,7 +37,7 @@
 }
 
 .topicInfo button{
-    width: 100px;
+    width: 40px;
     height: 30px;
     color:aliceblue;
     background-color: var(--secondary-color);

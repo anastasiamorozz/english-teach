@@ -11,8 +11,8 @@ const TopicBlock = (topic:ITopic) => {
             <img src={topic.photoUrl || './topic.jpg'}></img>
             <div className='topicInfo'>
                 <h2>{topic.title}</h2>
-                <p><LightbulbIcon></LightbulbIcon> {topic.level}</p>
-                <button>Let`s go <ArrowForwardIosIcon></ArrowForwardIosIcon></button>
+                <p><LightbulbIcon className='icon'></LightbulbIcon> {topic.level}</p>
+                {/* <button><ArrowForwardIosIcon></ArrowForwardIosIcon></button> */}
             </div>
         </div>
     );
