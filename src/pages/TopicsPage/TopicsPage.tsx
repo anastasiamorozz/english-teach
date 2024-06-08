@@ -9,6 +9,8 @@ import TopicBlock from '../../components/TopicBlock/TopicBlock';
 import './TopicsPage.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Pagination from '@mui/material/Pagination';
+import { colors } from '@mui/material';
 
 const topics: ITopic[] = [
     { id: 1, title: 'Java Language', level: 'Advanced' },

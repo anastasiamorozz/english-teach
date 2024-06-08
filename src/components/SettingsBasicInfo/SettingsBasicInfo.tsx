@@ -13,7 +13,7 @@ const SettingsBasicInfo:FC = () => {
                 </div>
             </div>
 
-            <hr></hr>
+            <hr className='hrSettings'></hr>
 
             <div className='changeName'>
                 <div>
@@ -28,7 +28,7 @@ const SettingsBasicInfo:FC = () => {
 
             <div className='changeEmail'>
                 <h3>Email</h3>
-                <input type='text' autoComplete=''></input>
+                <input type='email' autoComplete=''></input>
             </div>
         </div>
     );

@@ -19,7 +19,7 @@ const SettingsPage: FC= () => {
                     <ProfileInfo></ProfileInfo>
                     <ChangeAvatarButton></ChangeAvatarButton>
                 </div>
-                <hr></hr>
+                {/* <hr></hr> */}
 
                 <SettingsBasicInfo></SettingsBasicInfo>
             </div>

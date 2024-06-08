@@ -9,6 +9,7 @@ import QuestionPage from "../pages/QuestionPage/QuestionPage";
 import ResultPage from "../pages/ResultPage/ResultPage";
 import FollowersPage from "../pages/FollowersPage/FollowersPage";
 import FollowingPage from "../pages/FollowingPage/FollowingPage";
+import AdminPage from "../pages/AdminPage/AdminPage";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
             {path: 'result', element:<ResultPage></ResultPage>},
             {path: 'followers', element:<FollowersPage></FollowersPage>},
             {path: 'following', element:<FollowingPage></FollowingPage>},
+            {path: 'admin', element:<AdminPage></AdminPage>},
         ]
     }
 ])

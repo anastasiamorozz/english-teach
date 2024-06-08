@@ -1,0 +1,10 @@
+.usersPanel{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    margin-top: 30px;
+    border: dotted 1px var(--secondary-color);
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
