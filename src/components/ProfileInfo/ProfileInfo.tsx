@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { FC, useContext, useState, useEffect } from 'react';
 import UserService from '../../services/UserService';
 import { Context } from '../..';
-import { Navigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 import {jwtDecode} from 'jwt-decode';
 import { IUser } from '../../models/IUser';
 import './ProfileInfo.css';
@@ -12,6 +12,7 @@ const ProfileInfo: FC = () => {
     const [userId, setUserId] = useState(0);
     const [firstName, setFirstName] = useState<string | undefined>("");
     const [lastName, setLastName] = useState<string | undefined>("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -70,12 +71,12 @@ const ProfileInfo: FC = () => {
                         <p className='description'>Words</p>
                     </div>
                     <img src='/Rectangle.png' alt='Separator' />
-                    <div className='details'>
+                    <div className='details' onClick={()=>{navigate('/followers')}}>
                         <p className='count'>234</p>
                         <p className='description'>Followers</p>
                     </div>
                     <img src='/Rectangle.png' alt='Separator' />
-                    <div className='details'>
+                    <div className='details'  onClick={()=>{navigate('/following')}}>
                         <p className='count'>135</p>
                         <p className='description'>Following</p>
                     </div>

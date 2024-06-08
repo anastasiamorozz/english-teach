@@ -7,20 +7,24 @@ import TopicsPage from "../pages/TopicsPage/TopicsPage";
 import SettingsPage from "../pages/SettingsPage/SettingsPage";
 import QuestionPage from "../pages/QuestionPage/QuestionPage";
 import ResultPage from "../pages/ResultPage/ResultPage";
+import FollowersPage from "../pages/FollowersPage/FollowersPage";
+import FollowingPage from "../pages/FollowingPage/FollowingPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
         children:[
-            {path:"", element:<ProfilePage></ProfilePage>},
-            {path:"login", element:<LoginPage></LoginPage>},
-            {path:"reg", element:<RegistrationPage></RegistrationPage>},
+            {path:'', element:<ProfilePage></ProfilePage>},
+            {path:'login', element:<LoginPage></LoginPage>},
+            {path:'reg', element:<RegistrationPage></RegistrationPage>},
             {path:'myprofile', element:<ProfilePage></ProfilePage>},
             {path:'topics', element:<TopicsPage></TopicsPage>},
-            {path:"settings", element:<SettingsPage></SettingsPage>},
+            {path:'settings', element:<SettingsPage></SettingsPage>},
             {path: 'test', element:<QuestionPage></QuestionPage>},
-            {path: 'result', element:<ResultPage></ResultPage>}
+            {path: 'result', element:<ResultPage></ResultPage>},
+            {path: 'followers', element:<FollowersPage></FollowersPage>},
+            {path: 'following', element:<FollowingPage></FollowingPage>},
         ]
     }
 ])
