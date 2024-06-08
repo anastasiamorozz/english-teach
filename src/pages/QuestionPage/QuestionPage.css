@@ -1,0 +1,19 @@
+.nextButton{
+    background-color: var(--secondary-color);
+    margin-left: 20px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.previousButton{
+    background-color: transparent;
+    margin-left: 20px;
+    border: solid var(--secondary-color);
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
