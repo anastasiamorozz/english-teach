@@ -26,6 +26,11 @@ import Typography from '@mui/material/Typography';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Link, useNavigate } from 'react-router-dom';
+import UserService from '../../services/UserService';
+import { useEffect, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { store } from '../..';
+import { IUser } from '../../models/IUser';
 
 
 const drawerWidth = 240;
@@ -129,6 +134,46 @@ export default function MiniDrawer() {
     navigate(path);
   };
 
+  const [avatar, setAvatar] = useState<Blob | any>(undefined);
+  const [userId, setUserId] = useState<number>(0);
+  const [firstName, setFirstName] = useState<string | undefined>("");
+  const [lastName, setLastName] = useState<string | undefined>("");
+  const [email, setEmail] = useState<string | undefined>("");
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        try {
+            const decodedToken: DecodedToken = jwtDecode(token);
+            console.log("Decoded token:", decodedToken);
+            setUserId(decodedToken.id);
+        } catch (e) {
+            console.error('Invalid token:', e);
+            localStorage.removeItem('token');
+            store.setAuth(false);
+        }
+    }
+}, [store]);
+
+  useEffect(()=>{
+      const fetchAvatar = async () =>{
+          try{
+            const response = await UserService.getUserInfo(userId);
+              const photo_res = await UserService.getAvatar(userId);
+              const user = response.data.user as IUser;
+              setFirstName(user.firstName);
+              setLastName(user.lastName);
+              setEmail(user.email);
+              setAvatar(photo_res);
+          }catch(e){
+              console.error('Error fetching user info:', e);
+          }
+      }
+
+      fetchAvatar()
+
+  }, [userId])
+  
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -157,10 +202,10 @@ export default function MiniDrawer() {
         <DrawerHeader sx={{ backgroundColor: '#0F1621' }}>
           <IconButton onClick={handleDrawerClose} sx={{ color: 'white' }}>
             <div className='miniInfo'>
-            <img className="miniAvatar" src='/avatar.jpg'></img>
+            <img className="miniAvatar" src={avatar || './avatar.jpg'}></img>
             <div>
-                <h6>User Bob</h6>
-                <p>bob@bob.com</p>
+                <h6>{firstName} {lastName}</h6>
+                <p>{email}</p>
             </div>
             {/* {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
             </div>

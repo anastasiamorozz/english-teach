@@ -6,25 +6,40 @@ import { Navigate, useNavigate } from 'react-router';
 import {jwtDecode} from 'jwt-decode';
 import { IUser } from '../../models/IUser';
 import './ProfileInfo.css';
+import LoginForm from '../LoginForm/LoginForm';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Loading from '../Loading/Loading';
+import { URL } from 'url';
 
-const ProfileInfo: FC = () => {
+
+
+const ProfileInfo = () => {
     const {store} = useContext(Context);
-    const [userId, setUserId] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [userId, setUserId] = useState<number | null>(null);
     const [firstName, setFirstName] = useState<string | undefined>("");
     const [lastName, setLastName] = useState<string | undefined>("");
+    const [words, setWords] = useState<number | undefined>(0);
+    const [followers, setFollowers] = useState<IUser[]|null>(null);
+    const [following, setFollowing] = useState<IUser[]|null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<Blob | any>(undefined);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            store.checkAuth()
+        console.log("Checking auth...");
+        if (!localStorage.getItem('token')) {
+            store.checkAuth();
+            store.checkActivationStatus();
         }
-    }, [])
-
+    }, [store]);
+    
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
                 const decodedToken: DecodedToken = jwtDecode(token);
+                console.log("Decoded token:", decodedToken);
                 setUserId(decodedToken.id);
             } catch (e) {
                 console.error('Invalid token:', e);
@@ -33,58 +48,79 @@ const ProfileInfo: FC = () => {
             }
         }
     }, [store]);
-
-    async function fetchUserInfo(userId: number){
-        try{
-            const response = await UserService.getUserInfo(userId);
-            const user = response.data.user as IUser;
-            setFirstName(user.firstName);
-            setLastName(user.lastName);
-        }catch(e){
-            console.error('Error fetching user info:', e);
+    
+    useEffect(() => {
+        const fetchUserInfo = async (userId: number) => {
+            console.log("Fetching user info for userId:", userId);
+            try {
+                const response = await UserService.getUserInfo(userId);
+                const followers_res = await UserService.getUserFollowers();
+                const following_res = await UserService.getUserFollowing();
+                const words_res = await UserService.getUserWords();
+                const photo_res = await UserService.getAvatar(userId);
+                const user = response.data.user as IUser;
+                setFollowers(followers_res.data);
+                setFollowing(following_res.data);
+                setFirstName(user.firstName);
+                setLastName(user.lastName);
+                setAvatarUrl(photo_res);
+                setWords(words_res.data);
+                setIsLoading(false);
+            } catch (e) {
+                console.error('Error fetching user info:', e);
+            }
+        };
+    
+        if (userId) {
+            fetchUserInfo(userId);
         }
+    }, [userId]);
+    
 
+    if(!store.isAuth || !store.isActivated){
+        return <Navigate to="/login" replace={true} />
     }
 
-    // if(!store.isAuth){
-    //     return <Navigate to="/login" replace={true} />
-    // }else{
-    //     fetchUserInfo(userId);
-    // }
-
-    fetchUserInfo(userId);
 
     return (
-        <div className="profile-container">
-            <div className='main'>
-                <div className='avatar'>
-                    <img src='/avatar.jpg' alt='User Avatar' />
+        <div>
+            {isLoading ? (
+                <div className="profile-container">
+                    <Loading></Loading>
                 </div>
-
-                <div>
-                    <h1>{firstName || "User"} {lastName || "Bob"}</h1>
-                </div>
+            ) : (
+                <div className="profile-container">
+                                <div className='main'>
+                                <div className='avatar'>
+                                    <img src={avatarUrl || './avatar.jpg'} alt='User Avatar' />
+                                </div>
                 
-                <div className='info'>
-                    <div className='details'>
-                        <p className='count'>12</p>
-                        <p className='description'>Words</p>
+                                <div>
+                                    <h1>{firstName} {lastName}</h1>
+                                </div>
+                                
+                                <div className='info'>
+                                    <div className='details'>
+                                        <p className='count'>{words ? words : 0}</p>
+                                        <p className='description'>Words</p>
+                                    </div>
+                                    <img src='/Rectangle.png' alt='Separator' />
+                                    <div className='details' onClick={()=>{
+                                        navigate('/followers', { state: { followers } });
+                                    }}>
+                                        <p className='count'>{followers ? followers.length : 0}</p>
+                                        <p className='description'>Followers</p>
+                                    </div>
+                                    <img src='/Rectangle.png' alt='Separator' />
+                                    <div className='details'  onClick={()=>{navigate('/following')}}>
+                                        <p className='count'>{following ? following.length : 0}</p>
+                                        <p className='description'>Following</p>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                    <img src='/Rectangle.png' alt='Separator' />
-                    <div className='details' onClick={()=>{navigate('/followers')}}>
-                        <p className='count'>234</p>
-                        <p className='description'>Followers</p>
-                    </div>
-                    <img src='/Rectangle.png' alt='Separator' />
-                    <div className='details'  onClick={()=>{navigate('/following')}}>
-                        <p className='count'>135</p>
-                        <p className='description'>Following</p>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+            )}
+        </div> 
     );
 
 }

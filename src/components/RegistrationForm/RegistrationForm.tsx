@@ -13,9 +13,9 @@ const RegistrationForm: FC = () => {
     const navigate = useNavigate();
 
     const handleReg = async () => {
-        await store.registration(firstName, lastName, email, password);
+        await store.registration(email, password, firstName, lastName);
         if (store.isAuth) {
-            navigate('/'); 
+            navigate('/activation'); 
         }
     };
 

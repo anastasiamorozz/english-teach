@@ -4,11 +4,13 @@ import AuthService from "../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 import { API_URL } from "../http";
+import { jwtDecode } from "jwt-decode";
 
 export default class Store {
     user = {} as IUser;
     isAuth = false;
     errorMessage: string | null = null;
+    isActivated = false;
 
     constructor(){
         makeAutoObservable(this);
@@ -26,6 +28,10 @@ export default class Store {
         this.errorMessage = message;
     }
 
+    setActivated(status: boolean) {
+        this.isActivated = status;
+    }
+
     async login(email: string, password: string){
         try{
             const response = await AuthService.login(email, password);
@@ -41,7 +47,8 @@ export default class Store {
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
-            this.setErrorMessage(null)
+            this.setErrorMessage(null);
+            this.setActivated(response.data.user.isActivated);
         }catch(e){
             console.log(e);
             this.setErrorMessage('An error occurred during login. Please try again.');
@@ -58,6 +65,7 @@ export default class Store {
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
+            this.checkActivationStatus();
         }catch(e){
             console.log(e)
         }
@@ -79,12 +87,28 @@ export default class Store {
             const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true});
             console.log(response);
             localStorage.setItem('token', response.data.accessToken);
-            // if(response){
-            //     this.setAuth(true);
-            //     this.setUser(response.data.user);
-            // }
+            if(response){
+                this.setAuth(true);
+                this.setUser(response.data.user);
+            }
         }catch(e){
             console.log(e)
+        }
+    }
+
+    checkActivationStatus() {
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const decodedToken: DecodedToken = jwtDecode(token);
+                console.log(decodedToken.isActivated);
+                this.setActivated(decodedToken.isActivated);
+            } catch (e) {
+                console.error('Invalid token:', e);
+                localStorage.removeItem('token');
+                // this.setAuth(false);
+                // this.setActivated(false);
+            }
         }
     }
 }

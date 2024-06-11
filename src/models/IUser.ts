@@ -6,4 +6,5 @@ export interface IUser{
     lastName?: string;
     photo?: string;
     isAdmin?:boolean;
+    wordsCount?:number;
 }

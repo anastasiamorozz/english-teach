@@ -7,6 +7,7 @@ import './styles/global.css';
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { Outlet } from "react-router";
 import Header from "./components/Header/Header";
+import ActivationPage from "./pages/ActivationPage/ActivationPage";
 
 function App() {
   const {store} = useContext(Context);

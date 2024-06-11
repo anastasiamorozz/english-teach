@@ -10,6 +10,7 @@ import ResultPage from "../pages/ResultPage/ResultPage";
 import FollowersPage from "../pages/FollowersPage/FollowersPage";
 import FollowingPage from "../pages/FollowingPage/FollowingPage";
 import AdminPage from "../pages/AdminPage/AdminPage";
+import ActivationPage from "../pages/ActivationPage/ActivationPage";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
         element: <App />,
         children:[
             {path:'', element:<ProfilePage></ProfilePage>},
+            {path:'activation', element:<ActivationPage></ActivationPage>},
             {path:'login', element:<LoginPage></LoginPage>},
             {path:'reg', element:<RegistrationPage></RegistrationPage>},
             {path:'myprofile', element:<ProfilePage></ProfilePage>},

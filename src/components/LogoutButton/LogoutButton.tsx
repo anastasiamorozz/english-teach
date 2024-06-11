@@ -5,10 +5,14 @@ import './LogoutButton.css';
 
 const LogoutButton: FC = () => {
     const {store} = useContext(Context);
+
+    const handlelogout = async () =>{
+        await store.logout();
+    }
     
     return (
         <div className='logoutButton'>
-            <button onClick={() => store.logout()}><img src='/logout.png'></img> Logout</button>
+            <button onClick={handlelogout}><img src='/logout.png'></img> Logout</button>
         </div>
     );
 }
