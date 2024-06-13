@@ -1,0 +1,15 @@
+.userSearch{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.userSearch input{
+    width: 100%;
+    padding: 10px;
+    border: solid 1px #737373;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #737373;
+}

@@ -30,6 +30,12 @@ const SettingsBasicInfo:FC = () => {
                 <h3>Email</h3>
                 <input type='email' autoComplete=''></input>
             </div>
+
+            <h2>AVATAR</h2>
+            <hr className='hrSettings'></hr>
+            <form method="post">
+                <input type='file'></input>
+            </form>
         </div>
     );
 }

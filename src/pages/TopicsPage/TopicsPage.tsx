@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import MiniDrawer from '../../components/MiniDrawer/MiniDrawer';
 import Footer from '../../components/Footer/Footer';
@@ -9,55 +9,68 @@ import TopicBlock from '../../components/TopicBlock/TopicBlock';
 import './TopicsPage.css';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import Pagination from '@mui/material/Pagination';
-import { colors } from '@mui/material';
+import TopicService from '../../services/TopicService';
+import Loading from '../../components/Loading/Loading';
+import { Context } from '../..';
 
-const topics: ITopic[] = [
-    { id: 1, title: 'Java Language', level: 'Advanced' },
-    { id: 2, title: 'Python Programming', level: 'Intermediate' },
-    { id: 3, title: 'Web Development', level: 'Beginner' },
-    { id: 4, title: 'Data Structures and Algorithms', level: 'Advanced' },
-    { id: 5, title: 'Machine Learning', level: 'Intermediate' },
-    { id: 6, title: 'Cybersecurity Basics', level: 'Beginner' },
-    { id: 7, title: 'Cloud Computing', level: 'Advanced' },
-    { id: 8, title: 'DevOps Practices', level: 'Intermediate' },
-    { id: 9, title: 'Mobile App Development', level: 'Beginner' },
-    { id: 10, title: 'Database Management', level: 'Advanced' },
-    { id: 11, title: 'Software Testing', level: 'Intermediate' },
-    { id: 12, title: 'Artificial Intelligence', level: 'Beginner' }
-  ];
+const TopicsPage = () => {
+    const {store} = useContext(Context);
+    const [page, setPage] = useState<number>(1);
+    const [topics, setTopics] = useState<ITopic[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        const fetchTopics = async (page: number, pageSize: number) => {
+            try {
+                const res_topics = await TopicService.getTopics(page, pageSize);
+                const topicsList = res_topics.data.topics as ITopic[];
+                setTopics(topicsList);
+                console.log('Topics: ', topics)
+            } catch (error) {
+                console.error('Error fetching topics:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
 
-  
-
-
-const TopicsPage: FC = () => {
-
-    const [page, setPage]=useState(1);
+        fetchTopics(page, 12);
+    }, [store]);
 
     return (
         <div>
-            <Header></Header>
-            <MiniDrawer></MiniDrawer>
-            <SearchTopic></SearchTopic>
+            <Header />
+            <MiniDrawer />
+            <SearchTopic />
             <div className='wrapper'>
-                {topics.map((topic) => (
-                    <TopicBlock key={topic.id} {...topic}></TopicBlock>
-                ))}
+                {isLoading ? (
+                    <Loading />
+                ) : topics.length > 0 ? (
+                    topics.map((topic) => (
+                        <TopicBlock key={topic.id} {...topic} />
+                    ))
+                ) : (
+                    <div>No topics yet</div>
+                )}
             </div>
 
             <div className='pagesNavigation'>
-                {page==1 ? (
-                    <button onClick={()=>{setPage(page+1)}}><ArrowRightIcon></ArrowRightIcon></button>
+                {page === 1 ? (
+                    <button onClick={() => setPage(page + 1)}>
+                        <ArrowRightIcon />
+                    </button>
                 ) : (
                     <div>
-                        <button onClick={()=>{setPage(page-1)}}><ArrowLeftIcon></ArrowLeftIcon></button>
-                        <button onClick={()=>{setPage(page+1)}}><ArrowRightIcon></ArrowRightIcon></button>
+                        <button onClick={() => setPage(page - 1)}>
+                            <ArrowLeftIcon />
+                        </button>
+                        <button onClick={() => setPage(page + 1)}>
+                            <ArrowRightIcon />
+                        </button>
                     </div>
                 )}
             </div>
-            
-            <Footer></Footer>
+
+            <Footer />
         </div>
     );
 }

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { FC, useContext, useState, useEffect } from 'react';
 import UserService from '../../services/UserService';
 import { Context } from '../..';
-import { Navigate, useNavigate } from 'react-router';
+import { Navigate, useLocation, useNavigate } from 'react-router';
 import {jwtDecode} from 'jwt-decode';
 import { IUser } from '../../models/IUser';
 import './ProfileInfo.css';
@@ -24,7 +24,20 @@ const ProfileInfo = () => {
     const [followers, setFollowers] = useState<IUser[]|null>(null);
     const [following, setFollowing] = useState<IUser[]|null>(null);
     const [avatarUrl, setAvatarUrl] = useState<Blob | any>(undefined);
+    const [owner, setOwner] = useState<IUser|null>(null);
     const navigate = useNavigate();
+
+    try{
+        const location = useLocation();
+        const {user} = location.state;
+        if(user){
+            setOwner(user);
+            setUserId(user.id);
+        }
+        console.log('Its not your profile')
+    }catch(e){
+        console.log('Its your profile')
+    }
 
     useEffect(() => {
         console.log("Checking auth...");
@@ -98,6 +111,12 @@ const ProfileInfo = () => {
                                 <div>
                                     <h1>{firstName} {lastName}</h1>
                                 </div>
+
+                                {owner ? (
+                                    <div>Its not your profile</div>
+                                ):(
+                                    <div>Your profile</div>
+                                )}
                                 
                                 <div className='info'>
                                     <div className='details'>
@@ -112,7 +131,7 @@ const ProfileInfo = () => {
                                         <p className='description'>Followers</p>
                                     </div>
                                     <img src='/Rectangle.png' alt='Separator' />
-                                    <div className='details'  onClick={()=>{navigate('/following')}}>
+                                    <div className='details'  onClick={()=>{navigate('/following', { state: { following }})}}>
                                         <p className='count'>{following ? following.length : 0}</p>
                                         <p className='description'>Following</p>
                                     </div>

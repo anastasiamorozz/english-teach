@@ -17,7 +17,7 @@ const SettingsPage: FC= () => {
                 <div className='profileInfo'>
                     <h2>Profile</h2>
                     <ProfileInfo></ProfileInfo>
-                    <ChangeAvatarButton></ChangeAvatarButton>
+                    {/* <ChangeAvatarButton></ChangeAvatarButton> */}
                 </div>
                 {/* <hr></hr> */}
 

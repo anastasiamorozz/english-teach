@@ -43,4 +43,13 @@ export default class UserService{
         });
         return URL.createObjectURL(response.data);
     }
+
+    static async userSearch(query: string, page: number, limit: number) {
+        const response = await $api.post(`/user/search`,{query, page, limit});
+        return response;
+    }
+
+    static getFollowings(): Promise<AxiosResponse<IUser[]>>{
+        return $api.get('/user/subscriptions');
+    }
 }
