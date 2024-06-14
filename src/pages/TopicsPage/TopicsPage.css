@@ -1,6 +1,6 @@
 .wrapper{
     display: grid;
-    grid-template-columns: 350px 350px 350px;
+    grid-template-columns: 520px 520px;
     width: 1050px;
     margin-left: auto;
     margin-right: auto;
@@ -33,4 +33,52 @@
 
 .pag{
     color: white;
+}
+
+.searchContainer{
+    background-color: #29303C;
+    width: 1030px;
+    padding: 30px;
+    border: none;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchContainer p{
+    margin-top: 0px;
+    font-weight: bold;
+}
+
+.searchContainer .searchParams{
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchParams input{
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+}
+
+.searchParams button{
+    width: 110px;
+    color:aliceblue;
+    background-color: var(--secondary-color);
+    font-weight: bold;
+    border:none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.titleSearch{
+    width: 600px;
+}
+
+.levelSearch{
+    width: 200px;
 }

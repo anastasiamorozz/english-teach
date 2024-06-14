@@ -19,6 +19,9 @@ const TopicsPage = () => {
     const [topics, setTopics] = useState<ITopic[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const [title, setTitle] = useState<string>('');
+    const [level, setLevel] = useState<string>('');
+
     useEffect(() => {
         const fetchTopics = async (page: number, pageSize: number) => {
             try {
@@ -33,14 +36,32 @@ const TopicsPage = () => {
             }
         }
 
-        fetchTopics(page, 12);
-    }, [store]);
+        fetchTopics(page, 6);
+    }, [page]);
+
+    const handleKeyPress = async () => {
+        try {
+            const response = await TopicService.topicSearch(title, level, page, 6); 
+            console.log('Search ', response.data);
+            setTopics(response.data);
+        } catch (error) {
+            console.error('Error during search:', error);
+        }
+    };
 
     return (
         <div>
             <Header />
             <MiniDrawer />
-            <SearchTopic />
+            <div className='searchContainer'>
+                <p>What do you want to learn?</p>
+                <div className='searchParams'>
+                    <input className='titleSearch' type='text' placeholder='Find courses, skills, software etc' onChange={(e)=>{setTitle(e.target.value)}}></input>
+                    <input className='levelSearch' type='text' placeholder='Level' onChange={(e)=>{setLevel(e.target.value)}}></input>
+                    <button onClick={handleKeyPress}>Search</button>
+                </div>
+            </div>
+
             <div className='wrapper'>
                 {isLoading ? (
                     <Loading />

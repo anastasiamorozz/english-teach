@@ -6,4 +6,13 @@ export default class TopicService{
     static async getTopics(page:number, pageSize:number){
         return $api.post<{topics: ITopic[]}>('/test/topics', {page, pageSize});
     }
+
+    static async topicSearch(title: string, level: string, page: number, limit: number) {
+        const response = await $api.post(`/test/topic/search`,{title, level,page, limit});
+        return response;
+    }
+
+    static async getTopicWords(topicId:number){
+        return $api.post('/test/topic/words', {topicId});
+    }
 }
