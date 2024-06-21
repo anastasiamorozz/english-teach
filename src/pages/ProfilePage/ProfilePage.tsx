@@ -20,7 +20,6 @@ const ProfilePage: FC = () => {
                 <Rank></Rank>
             </div>
             <LogoutButton></LogoutButton>
-            <Footer></Footer>
         </div>
     );
 }

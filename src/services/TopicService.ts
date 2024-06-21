@@ -15,4 +15,12 @@ export default class TopicService{
     static async getTopicWords(topicId:number){
         return $api.post('/test/topic/words', {topicId});
     }
+
+    static async saveResult(topicId: number, correctAnswers: number): Promise<AxiosResponse>{
+        return $api.put('/test/result', {topicId, correctAnswers});
+    }
+
+    static async saveTopic(topicId: number): Promise<AxiosResponse>{
+        return $api.put('/test/topic/start', {topicId});
+    }
 }

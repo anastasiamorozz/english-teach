@@ -70,13 +70,17 @@ const ProfileInfo = () => {
                 const followers_res = await UserService.getUserFollowers();
                 const following_res = await UserService.getUserFollowing();
                 const words_res = await UserService.getUserWords();
-                const photo_res = await UserService.getAvatar(userId);
+                
                 const user = response.data.user as IUser;
+                console.log('user: ', user);
+                if(user.photo){
+                    const photo_res = await UserService.getAvatar(userId);
+                    setAvatarUrl(photo_res);
+                }
                 setFollowers(followers_res.data);
                 setFollowing(following_res.data);
                 setFirstName(user.firstName);
                 setLastName(user.lastName);
-                setAvatarUrl(photo_res);
                 setWords(words_res.data);
                 setIsLoading(false);
             } catch (e) {
@@ -111,12 +115,12 @@ const ProfileInfo = () => {
                                 <div>
                                     <h1>{firstName} {lastName}</h1>
                                 </div>
-
+{/* 
                                 {owner ? (
                                     <div>Its not your profile</div>
                                 ):(
                                     <div>Your profile</div>
-                                )}
+                                )} */}
                                 
                                 <div className='info'>
                                     <div className='details'>

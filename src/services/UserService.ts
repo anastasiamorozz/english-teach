@@ -10,7 +10,8 @@ export default class UserService{
     }
 
     static async getUserInfo(userId: number) {
-        return $api.post<{ user: IUser }>('/user/info', { userId });
+        const res = await $api.post<{ user: IUser }>('/user/info', { userId });
+        return res;
     }
 
     static getUserFollowers(): Promise<AxiosResponse<IUser[]>>{

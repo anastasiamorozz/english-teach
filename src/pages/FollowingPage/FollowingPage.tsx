@@ -58,7 +58,6 @@ const FollowingPage:FC = () => {
                     <MiniProfile key={user.id} {...user} />
                 ))
             )}
-            <Footer></Footer>
         </div>
     );
 }

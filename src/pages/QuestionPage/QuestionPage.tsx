@@ -46,7 +46,7 @@ const QuestionPage:FC = () => {
             TestStore.addAnswer(currentWordIndex, currentAnswer);
             setCurrentWordIndex(currentWordIndex + 1);
         } else {
-            navigator('/result');
+            navigator('/result', { state: { topic } });
         }
     };
 

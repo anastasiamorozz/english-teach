@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { IWord } from '../../models/IWord';
 import { observer } from 'mobx-react-lite';
 import './QuestionBlock.css';
+import TestStore from '../../store/TestStore';
 
 const shuffleArray = (array: string[]) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -23,18 +24,20 @@ const QuestionBlock= ( word: IWord) =>{
 
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
 
-    const handleClick = (index: number) => {
+    const handleClick = (index: number, wordId: number, meaning: string) => {
         setClickedIndex(index);
+        TestStore.addAnswer(wordId, meaning);
+        console.log(TestStore.getAnswers());
     };
 
     return (
         <div>
-            <div className='topicTitle'>Java Language</div>
+            <div className='topicTitle'>Choose...</div>
         
             <ul className='question'>
                 <b>{word.word}</b>
                 {array.map((meaning, index) => (
-                    <li key={index} onClick={() => handleClick(index)}><div  className={clickedIndex === index ? 'selected' : 'letter'}>{letters[index]}</div> {meaning}</li>
+                    <li key={index} onClick={() => handleClick(index, word.id, meaning)}><div  className={clickedIndex === index ? 'selected' : 'letter'}>{letters[index]}</div> {meaning}</li>
                 ))}
             </ul>
         </div>
