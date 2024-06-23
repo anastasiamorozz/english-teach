@@ -30,7 +30,7 @@
 .colorThemePick {
   border: solid 0px 0px 10px 0px #D1D3D4;
     align-items: center; 
-    background-color: #0F1621;
+    /* background-color: #0F1621; */
     padding: 10px; 
   }
   
@@ -38,7 +38,7 @@
     display: flex;
     align-items: center; 
     margin: 0; 
-    color: white; 
+    color: black; 
     margin-left:15px;
   }
   
@@ -65,7 +65,7 @@ hr{
 
 .buttonsGroup button{
   border: none;
-  color: #D1D3D4;
+  color: black;
   display: flex;
   align-items: center;
   padding: 15px;

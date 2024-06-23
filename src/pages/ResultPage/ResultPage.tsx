@@ -16,7 +16,7 @@ const ResultPage:FC = () => {
             <Header></Header>
             <MiniDrawer></MiniDrawer>
             <ResultBlock {...topic}></ResultBlock>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 }

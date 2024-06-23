@@ -11,7 +11,7 @@ const RegistrationPage: FC = () => {
             <div className='content'>
                 <RegistrationForm></RegistrationForm>
                 <div className='picture'>
-                    <img src='/login-picture.png'></img>
+                <img src={document.body.getAttribute('data-theme') === 'dark' ? '/login-picture.png' : '/login-page-02.png'} alt="Login" />
                 </div>
             </div>
         </div>

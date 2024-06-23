@@ -1,5 +1,9 @@
 .progress{
     width: 500px;
+    padding: 40px;
+    /* background-color: #F5F5F5; */
+    border:none;
+    border-radius: 10px;
 }
 
 .mainProgress{
@@ -41,7 +45,7 @@
 
 .infoProgress .bottomInfo p{
     font-size: 19px;
-    color:white;
+    color:var(--text-color);
 }
 .infoProgress .bottomInfo p .count{
     font-weight: bold;

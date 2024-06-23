@@ -75,7 +75,7 @@ const QuestionPage:FC = () => {
                 <button className='previousButton' onClick={handlePreviousWord}><ArrowLeftIcon></ArrowLeftIcon>Previous</button>
                 <button className='nextButton' onClick={handleNextWord}>Next <ArrowRightIcon></ArrowRightIcon></button>
             </div>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 }

@@ -36,7 +36,7 @@ const TopicsPage = () => {
             }
         }
 
-        fetchTopics(page, 6);
+        fetchTopics(page, 10);
     }, [page]);
 
     const handleKeyPress = async () => {
@@ -54,7 +54,7 @@ const TopicsPage = () => {
             <Header />
             <MiniDrawer />
             <div className='searchContainer'>
-                <p>What do you want to learn?</p>
+                {/* <p>What do you want to learn?</p> */}
                 <div className='searchParams'>
                     <input className='titleSearch' type='text' placeholder='Find courses, skills, software etc' onChange={(e)=>{setTitle(e.target.value)}}></input>
                     <input className='levelSearch' type='text' placeholder='Level' onChange={(e)=>{setLevel(e.target.value)}}></input>
@@ -91,7 +91,7 @@ const TopicsPage = () => {
                 )}
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

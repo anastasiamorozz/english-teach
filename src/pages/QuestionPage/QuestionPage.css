@@ -1,11 +1,14 @@
 .nextButton{
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: transparent;
+    border: solid 1px var(--secondary-color);
     margin-left: 20px;
-    border: none;
+    /* border: none; */
     border-radius: 10px;
     display: flex;
     text-align: center;
     justify-content: center;
+    
 }
 
 .previousButton{

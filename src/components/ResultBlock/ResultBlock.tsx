@@ -11,7 +11,7 @@ const ResultBlock = (topic: ITopic) => {
 
     const saveResult = async (topicId: number, answersCount: number) => {
         try {
-            const wordsCount = TestStore.getAnswers().length-1;
+            const wordsCount = TestStore.getAnswers().length;
             setWords(wordsCount)
             console.log('WORDS:',TestStore.getAnswers());
             await TopicService.saveResult(topicId, answersCount);
@@ -23,7 +23,7 @@ const ResultBlock = (topic: ITopic) => {
 
     useEffect(() => {
         if (!resultSaved) { 
-            saveResult(topic.id, TestStore.getAnswers().length-1);
+            saveResult(topic.id, TestStore.getAnswers().length);
             setResultSaved(true); 
         }
     }, [resultSaved]); 

@@ -12,7 +12,7 @@ const LogoutButton: FC = () => {
     
     return (
         <div className='logoutButton'>
-            <button onClick={handlelogout}><img src='/logout.png'></img> Logout</button>
+            <button onClick={handlelogout}><img src='/logout.png'></img><b> Logout</b></button>
         </div>
     );
 }

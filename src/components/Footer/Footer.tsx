@@ -41,9 +41,9 @@ function Footer() {
                 </div>
             </div>
         </div>
-        <div className='secondFooter'>
+        {/* <div className='secondFooter'>
             <h5>Made by @anastasiamorozz All Right Reserved</h5>
-        </div>
+        </div> */}
         </div>
     );
 }

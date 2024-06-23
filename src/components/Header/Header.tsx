@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <div className='header'>
-            <Link to={'/topics'}><img src="/logo-no-background.png" alt="logo" /></Link>
+            <Link to={'/topics'}><img src={document.body.getAttribute('data-theme') === 'dark' ? '/logo-no-background.png' : '/logo-removebg.png'} alt="Login" /></Link>
         </div>
     );
 }

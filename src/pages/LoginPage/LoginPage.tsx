@@ -12,8 +12,8 @@ const LoginPage: FC = () => {
             <div className='content'>
                 <LoginForm></LoginForm>
                 <div className='picture'>
-                    <img src='/login-picture.png'></img>
-                </div>
+                <img src={document.body.getAttribute('data-theme') === 'dark' ? '/login-picture.png' : '/login-page-02.png'} alt="Login" />
+                </div>  
             </div>
 {/* 
             <button onClick={()=>

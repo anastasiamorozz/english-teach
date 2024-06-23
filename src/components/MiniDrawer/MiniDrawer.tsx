@@ -199,8 +199,8 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" anchor="right" open={open}>
-        <DrawerHeader sx={{ backgroundColor: '#0F1621' }}>
-          <IconButton onClick={handleDrawerClose} sx={{ color: 'white' }}>
+        <DrawerHeader sx={{ backgroundColor: '#F5F5F5' }}>
+          <IconButton onClick={handleDrawerClose} sx={{ color: 'black' }}>
             <div className='miniInfo'>
             <img className="miniAvatar" src={avatar || './avatar.jpg'}></img>
             <div>
@@ -212,7 +212,7 @@ export default function MiniDrawer() {
           </IconButton>
         </DrawerHeader>
         <Divider sx={{ border: 'none' }} />
-        <List sx={{ backgroundColor: '#0F1621', flexGrow: 1 }}> {/* Ensure List takes full height */}
+        <List sx={{ backgroundColor: '#F5F5F5', flexGrow: 1 }}> {/* Ensure List takes full height */}
           {['Topics', 'My profile', 'Settings'].map((text, index) => {
                     const path = text.toLowerCase().replace(' ', '');
                     return(
@@ -230,14 +230,14 @@ export default function MiniDrawer() {
                           sx={{
                             minWidth: 0,
                             mr: open ? 3 : 'auto',
-                            color: 'white',
+                            color: 'black',
                             justifyContent: 'center',
                             border: 'none',
                           }}
                         >
                         {index % 3 === 0 ? <SchoolIcon/> : index % 3 === 1 ? <AccountCircleIcon /> : <SettingsIcon />}
                         </ListItemIcon>
-                        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, color: 'white', border: 'none' }} /> {/* Set text color to white */}
+                        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, color: 'black', border: 'none' }} /> {/* Set text color to white */}
                       </ListItemButton>
                     </ListItem>
                   );
@@ -245,7 +245,7 @@ export default function MiniDrawer() {
         </List>
 
         <Typography sx={{
-          backgroundColor:'#0F1621'
+          backgroundColor:'#F5F5F5'
         }}>
         {open ? (
           <div className='colorThemePick'>
@@ -264,8 +264,8 @@ export default function MiniDrawer() {
           <NightsStayIcon sx={{
             marginBottom:'20px',
             marginLeft:'25px',
-            // color:'#D1D3D4',
-            backgroundColor:'#0F1621'
+            color:'black',
+            backgroundColor:'#F5F5F5'
           }}/>
         )}
       </Typography>
