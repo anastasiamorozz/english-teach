@@ -8,6 +8,7 @@ import ProgressContainer from '../../components/ProgressContainer/ProgressContai
 import './ProfilePage.css';
 import Rank from '../../components/Rank/Rank';
 import MiniDrawer from '../../components/MiniDrawer/MiniDrawer';
+import UserHistory from '../../components/UserHistory/UserHistory';
 
 const ProfilePage: FC = () => {
     return (
@@ -20,6 +21,8 @@ const ProfilePage: FC = () => {
                 <Rank></Rank>
             </div>
             <LogoutButton></LogoutButton>
+            <UserHistory></UserHistory>
+            <Footer></Footer>
         </div>
     );
 }

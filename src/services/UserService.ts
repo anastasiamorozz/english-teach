@@ -81,4 +81,8 @@ export default class UserService{
     static async unfollow(followerId:number){
         return await $api.post('/user/unfollow',{followerId});
     }
+
+    static async getHistory():Promise<AxiosResponse<ITopic[]>>{
+        return await $api.get('/user/history');
+    }
 }
