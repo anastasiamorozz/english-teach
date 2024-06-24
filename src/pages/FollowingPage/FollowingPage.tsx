@@ -15,7 +15,7 @@ const FollowingPage:FC = () => {
     const location = useLocation();
     const {following}=location.state;
     const [query, setQuery] = useState<string>('');
-    const [users, setUsers] = useState<IUser[]|'No one exists with this name'>(following);
+    const [users, setUsers] = useState<IUser[]>(following);
 
     useEffect(() => {
         console.log('Updated users:', users);
@@ -51,7 +51,7 @@ const FollowingPage:FC = () => {
                     onKeyPress={handleKeyPress}
                 />
             </div>
-            {users === 'No one exists with this name' || users.length===0 ? (
+            {users.length===0 ? (
                 <div>No one here...</div>
             ):(
                 users.map((user) => (

@@ -69,4 +69,16 @@ export default class UserService{
             }
         });
     }
+
+    static async isUserFollowing(followingId: number):Promise<AxiosResponse<boolean>>{
+        return await $api.post('/user/isSubscription',{followingId});
+    }
+
+    static async follow(followerId:number){
+        return await $api.post('/user/follow',{followerId});
+    }
+
+    static async unfollow(followerId:number){
+        return await $api.post('/user/unfollow',{followerId});
+    }
 }

@@ -79,7 +79,9 @@ const ProfileInfo = () => {
                     setAvatarUrl(photo_res);
                 }
                 setFollowers(followers_res.data);
+                
                 setFollowing(following_res.data);
+                console.log('Following: ', following);
                 setFirstName(user.firstName);
                 setLastName(user.lastName);
                 setWords(words_res.data);

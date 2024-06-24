@@ -5,6 +5,30 @@
     padding: 15px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.miniProfile .not-following{
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px;
+    font-weight: bold;
+    border:none;
+    border-radius: 10px;
+}
+
+.miniProfile .following{
+    background-color: transparent;
+    color: var(--secondary-color);
+    padding: 8px;
+    font-weight: bold;
+    border:solid 1px var(--secondary-color);
+    border-radius: 10px;
+}
+
+.avatarAndName{
+    display: flex;
+    align-items: center;
 }
 
 .miniProfile img{
