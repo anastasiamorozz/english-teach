@@ -53,4 +53,20 @@ export default class UserService{
     static getFollowings(): Promise<AxiosResponse<IUser[]>>{
         return $api.get('/user/subscriptions');
     }
+
+    static async changeFirstName(firstName: string){
+        return await $api.post('/user/changeFirstName',{firstName});
+    }
+
+    static async changeLastName(lastName: string){
+        return await $api.post('/user/changeLastName',{lastName});
+    }
+
+    static async uploadAvatar(formData: FormData) {
+        return await $api.post('/user/changeAvatar', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
 }

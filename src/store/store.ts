@@ -5,6 +5,7 @@ import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 import { API_URL } from "../http";
 import { jwtDecode } from "jwt-decode";
+import { IDecodedToken } from "../models/IDecodedToken ";
 
 export default class Store {
     user = {} as IUser;
@@ -100,7 +101,7 @@ export default class Store {
         const token = localStorage.getItem('token');
         if (token) {
             try {
-                const decodedToken: DecodedToken = jwtDecode(token);
+                const decodedToken: IDecodedToken = jwtDecode(token);
                 console.log(decodedToken.isActivated);
                 this.setActivated(decodedToken.isActivated);
             } catch (e) {

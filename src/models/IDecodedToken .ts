@@ -1,4 +1,4 @@
-interface DecodedToken {
+export interface IDecodedToken {
     id: number;
     email: string;
     isActivated: boolean;

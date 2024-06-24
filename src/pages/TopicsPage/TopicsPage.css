@@ -62,6 +62,12 @@
     border-radius: 20px;
 }
 
+.searchParams select{
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+}
+
 .searchParams button{
     width: 110px;
     color:aliceblue;

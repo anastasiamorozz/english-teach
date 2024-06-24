@@ -70,11 +70,13 @@ const QuestionPage:FC = () => {
         <div>
             <Header></Header>
             <MiniDrawer></MiniDrawer>
+            <div className='topicTitle'>Choose... ({((currentWordIndex+1)/words.length)*100}%)</div>
             <QuestionBlock key={words[currentWordIndex].id} {...words[currentWordIndex]}></QuestionBlock>
             <div className='buttonsGroup'>
                 <button className='previousButton' onClick={handlePreviousWord}><ArrowLeftIcon></ArrowLeftIcon>Previous</button>
                 <button className='nextButton' onClick={handleNextWord}>Next <ArrowRightIcon></ArrowRightIcon></button>
             </div>
+            
             {/* <Footer></Footer> */}
         </div>
     );

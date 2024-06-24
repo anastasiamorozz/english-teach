@@ -8,10 +8,24 @@ import './ResultBlock.css';
 const ResultBlock = (topic: ITopic) => {
     const [resultSaved, setResultSaved] = useState(false); 
     const [words, setWords]=useState(0);
+    const [total, setTotal]=useState(0);
+
+    useEffect(()=>{
+        const fetchWords =async (topicId:number) => {
+            try{
+                const res_words = await TopicService.getTopicWords(topicId);
+                setTotal(res_words.data.length);
+            }catch(e){
+                console.log('Error: ', e)
+            }
+        }
+
+        fetchWords(topic.id);
+    }, [topic])
 
     const saveResult = async (topicId: number, answersCount: number) => {
         try {
-            const wordsCount = TestStore.getAnswers().length;
+            const wordsCount = TestStore.getAnswers().length-1;
             setWords(wordsCount)
             console.log('WORDS:',TestStore.getAnswers());
             await TopicService.saveResult(topicId, answersCount);
@@ -28,6 +42,10 @@ const ResultBlock = (topic: ITopic) => {
         }
     }, [resultSaved]); 
 
+    const statistic = (words:number, total: number) =>{
+        return words*100/total;
+    }
+
     return (
         <div className='result'>
             <div className='resultPhoto'>
@@ -35,7 +53,9 @@ const ResultBlock = (topic: ITopic) => {
             </div>
             <h2>Lesson complete!</h2>
             <ul>
-                <li>Words: +{words}</li>
+                <li>Words correct: {words}</li>
+                <li>Total words: {total}</li>
+                <li>Your success in this: {statistic(words, total)}%</li>
             </ul>
         </div>
     );

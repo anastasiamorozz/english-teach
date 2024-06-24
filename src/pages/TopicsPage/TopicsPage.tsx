@@ -54,10 +54,24 @@ const TopicsPage = () => {
             <Header />
             <MiniDrawer />
             <div className='searchContainer'>
-                {/* <p>What do you want to learn?</p> */}
-                <div className='searchParams'>
-                    <input className='titleSearch' type='text' placeholder='Find courses, skills, software etc' onChange={(e)=>{setTitle(e.target.value)}}></input>
-                    <input className='levelSearch' type='text' placeholder='Level' onChange={(e)=>{setLevel(e.target.value)}}></input>
+            {/* <p>What do you want to learn?</p> */}
+            <div className='searchParams'>
+                    <input
+                        className='titleSearch'
+                        type='text'
+                        placeholder='Find courses, skills, software etc'
+                        onChange={(e) => { setTitle(e.target.value); }}
+                    />
+                    <select
+                        className='levelSearch'
+                        onChange={(e) => { setLevel(e.target.value); }}
+                        value={level}
+                    >
+                        <option value=''>Level</option>
+                        <option value='beginner'>Beginner</option>
+                        <option value='intermediate'>Intermediate</option>
+                        <option value='advanced'>Advanced</option>
+                    </select>
                     <button onClick={handleKeyPress}>Search</button>
                 </div>
             </div>

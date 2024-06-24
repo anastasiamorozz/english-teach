@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Context } from '../..';
 import Header from '../../components/Header/Header';
+import { IDecodedToken } from '../../models/IDecodedToken ';
 import './ActivationPage.css';
 
 const ActivationPage = () => {
@@ -14,7 +15,7 @@ const ActivationPage = () => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
-                const decodedToken: DecodedToken = jwtDecode(token);
+                const decodedToken: IDecodedToken = jwtDecode(token);
                 console.log("Decoded token:", decodedToken);
                 setIsActivated(decodedToken.isActivated);
             } catch (e) {

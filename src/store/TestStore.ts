@@ -17,8 +17,6 @@ class TestStore {
 
     async validateAnswer(questionId: number, answer: string): Promise<boolean> {
         try {
-            console.log("Answer ", answer)
-            console.log("Id ", questionId)
             const response = await axios.post(`${API_URL}/test/answer`, { wordId: questionId, answer });
             return response.data.correct; 
         } catch (error) {
@@ -26,7 +24,7 @@ class TestStore {
             return false;
         }
     }
-    
+
     async addAnswer(questionId: number, answer: string) {
         const isValid = await this.validateAnswer(questionId, answer);
         if (isValid) {
@@ -41,9 +39,15 @@ class TestStore {
         }
     }
 
-    async getProgress(questionId: number){
-        const questionsCount:ITopic[] = await axios.post(`${API_URL}/test/topic/words`, {topicId:questionId});
-        return questionsCount.length/this.answers.length;
+    async getProgress(topicId: number) {
+        try {
+            const response = await axios.post(`${API_URL}/test/topic/words`, { topicId });
+            const questionsCount: ITopic[] = response.data;
+            return this.answers.length / questionsCount.length;
+        } catch (error) {
+            console.error(`Error fetching topic words for topic ${topicId}:`, error);
+            return 0;
+        }
     }
 
     removeAnswer(questionId: number) {

@@ -32,8 +32,6 @@ const QuestionBlock= ( word: IWord) =>{
 
     return (
         <div>
-            <div className='topicTitle'>Choose...</div>
-        
             <ul className='question'>
                 <b>{word.word}</b>
                 {array.map((meaning, index) => (

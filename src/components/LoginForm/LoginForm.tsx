@@ -49,7 +49,7 @@ const LoginForm: FC = () => {
                     <label htmlFor='rememberMe'>Remember me</label>
                 </form>
 
-                <a>Forgot password?</a>
+                {/* <a>Forgot password?</a> */}
             </div>
 
             <button className='button' onClick={handleLogin}>Login</button>

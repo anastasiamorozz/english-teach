@@ -31,6 +31,7 @@ import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { store } from '../..';
 import { IUser } from '../../models/IUser';
+import { IDecodedToken } from '../../models/IDecodedToken ';
 
 
 const drawerWidth = 240;
@@ -144,7 +145,7 @@ export default function MiniDrawer() {
     const token = localStorage.getItem('token');
     if (token) {
         try {
-            const decodedToken: DecodedToken = jwtDecode(token);
+            const decodedToken: IDecodedToken = jwtDecode(token);
             console.log("Decoded token:", decodedToken);
             setUserId(decodedToken.id);
         } catch (e) {

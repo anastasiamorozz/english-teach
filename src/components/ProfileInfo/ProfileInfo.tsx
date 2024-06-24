@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Loading from '../Loading/Loading';
 import { URL } from 'url';
+import { IDecodedToken } from '../../models/IDecodedToken ';
 
 
 
@@ -51,7 +52,7 @@ const ProfileInfo = () => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
-                const decodedToken: DecodedToken = jwtDecode(token);
+                const decodedToken: IDecodedToken = jwtDecode(token);
                 console.log("Decoded token:", decodedToken);
                 setUserId(decodedToken.id);
             } catch (e) {
